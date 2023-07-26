@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block tog %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+{% endblock tog %}
+{% block content %}
+    <form action="/home" method="POST" enctype="multipart/form-data" class="content-section" novalidate>
+        <h3>Upload Files</h3>
+        <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:gray">
+        <div class="form-group">
+            <label id="label1">Select GRN File</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input form-control-sm" name="GRN" id="GRN">
+                <label class="custom-file-label col-form-label-sm" for="GRN">Select GRN File</label>
+            </div>
+            <br>
+            <br>
+            <label>Select PO File</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input form-control-sm" name="PO" id="PO">
+                <label class="custom-file-label col-form-label-sm" for="PO">Select PO File</label>
+            </div>
+        </div>
+        <br>
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-success">Upload</button>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- <script>
+        $('#PO').on('change', function () {
+            //get the file name
+            let fileName = $(this).val();
+            let filename=fileName.replace("fakepath","Testpath")
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+        $('#GRN').on('change', function () {
+                //get the file name
+                let fileName = $(this).val();
+                let filename=fileName.replace("fakepath","Testpath")
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
+    </script> -->
+    <script>
+        $('#PO').on('change', function () {
+            //get the file name
+            let fileName = $(this).val();
+            let filename=fileName.replace("fakepath","...")
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(filename);
+        })
+        $('#GRN').on('change', function () {
+                //get the file name
+                let fileName = $(this).val();
+                let filename=fileName.replace("fakepath","...")
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(filename);
+            })
+    </script>
+{% endblock content %}

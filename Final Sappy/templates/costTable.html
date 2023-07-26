@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript">// <![CDATA[
+        function preloader(){
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }//preloader
+        window.onload = preloader;
+// ]]></script>
+    {% block tog %}{% endblock tog %}
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fluid Controls</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/home">
+                    <i class="material-icons icon1">cloud_upload</i>
+                    Upload Files
+                </a>
+            </li>
+            <li class="nav-item active dropdown icon1">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Data Operations
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/consumption"><i class="material-icons icon1">analytics</i> consumption</a>
+                <a class="dropdown-item" href="/duplicate"><i class="material-icons icon1">file_copy</i> Duplicate Item Codes</a>
+                <a class="dropdown-item" href="/frequency"><i class="material-icons icon1">show_chart</i> Order Frequency</a>
+                <a class="dropdown-item" href="/supplier"><i class="material-icons icon1">emoji_events</i> Supplier Ranking</a>
+                <a class="dropdown-item" href="/inventory"><i class="material-icons icon1">inventory_2</i> Stocking Policy</a>
+                <a class="dropdown-item" href="/cost"><i class="material-icons icon1">request_quote</i> Cost Optimization</a>
+            </li>
+            <li class="nav-item active icon1 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dashboard
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#"><i class="material-icons">analytics</i> Dashboard of 2018-19</a>
+                  <a class="dropdown-item" href="#"><i class="material-icons">file_copy</i> Dashboard of 2019-20</a>
+              </li>
+              
+            <li class="nav-item icon1 active">
+              <a class="nav-link" href="/pareto">Pareto Graph</a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="navbar-nav px-3 sticky-right">
+            <li class="nav-item active text-nowrap">
+                <a class="nav-link" href="/"><i  class="material-icons icon1">logout</i> Sign out</a>
+            </li>
+        </ul>
+
+      </nav>
+
+      <div id="loading"></div>
+      <div id="content">
+        <div class="col-md-8 reveal">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {% autoescape false %}
+                        {{ message }}
+                        {% endautoescape %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="dropdown btn-group" style="margin-left: 150px; margin-bottom: 70px; margin-top: 10px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Download as
+            </button>
+            <form action="POST">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="http://127.0.0.1:5000/downloads">Excel(.xlsx)</a>
+            </div>
+            </form>
+        </div>
+    
+        <div class="scrollmenu">
+            <div class="dataframe">
+                {% for table in tables %}
+                    {{ table|safe }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

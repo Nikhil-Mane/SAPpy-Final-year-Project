@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block tog %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+{% endblock tog %}
+{% block content %}
+    
+    <div style="background-color: white;">
+        <h3 style="margin-top: 25px; background-color: rgb(8, 2, 39); margin-bottom: 0px; text-align: center; color: whitesmoke;">Pareto Graph for First 20 Items</h3>
+        <center><img class="img-fluid" src="/pareto/plot.png" alt="my plot"></center>
+    </div>
+
+    <div style="background-color: white;">
+        <h3 style="margin-top: 25px; background-color: rgb(8, 2, 39); margin-bottom: 0px; text-align: center; color: whitesmoke;">Pareto Graph for First 50 Items</h3>
+        <center><img src="/pareto/plot1.png" class="img-fluid" alt="my plot"></center>
+    </div>
+    <div style="background-color: white;">
+        <h3 style="margin-top: 25px; background-color: rgb(8, 2, 39); margin-bottom: 0px; text-align: center; color: whitesmoke;">Pareto Graph for First 80 Items</h3>
+        <center><img src="/pareto/plot2.png" class="img-fluid" alt="my plot" style="height: 500px;"></center>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <div class="dropdown" style="margin-bottom: 70px; margin-top: 10px; width: 50%;">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Download as
+        </button>
+        
+        <form action="POST">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="http://127.0.0.1:5000/downloads">Excel(.xlsx)</a>
+        </div>
+        </form>
+    </div>
+
+    <div class="scrollmenu border">
+        <div class="dataframe">
+            {% for table in tables %}
+                {{ table|safe }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

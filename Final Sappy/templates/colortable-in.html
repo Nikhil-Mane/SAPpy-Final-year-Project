@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block tog %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='new.css') }}">
+<script>
+    $('document').ready(
+        function () {
+            $('#myTable tr td:nth-child(2)').each(function () {
+                var vGood = -1.0,
+                    good = 0.0,
+                    avg = 14.0,
+                    score = $(this).text();
+
+                if (score <= vGood) {
+                    $(this).parent().addClass('table-success');
+                }
+                else if (score >= good && score < avg) {
+                    $(this).parent().addClass('table-warning');
+                }
+                else if (score >= avg) {
+                    $(this).parent().addClass('table-danger');
+                }
+            });
+        });
+</script>
+{% endblock tog %}
+{% block content %}
+    <div class="card" style="background-color: rgb(1, 15, 9); color: white;">
+        <div class="card-header">
+            <h3>{{ the_title }}</h3>
+        </div>
+    </div>
+    <div class="dropdown" style="margin-bottom: 70px; margin-top: 10px;">
+        <button class="btn btn-warning" onclick="goBack()" style="margin-right: 10px;"> <i  class="material-icons icon1">arrow_back</i>Go Back</button>
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i  class="material-icons icon1">download</i>Download
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="http://127.0.0.1:5000/downloads">Excel(.xlsx)</a>
+        </div>
+    </div>
+
+    <div class="scrollmenu">
+        <table id="myTable" class="dataframe">
+            <tr>
+                {% for col in column_names %}
+                <th>{{col}}</th>
+                {% endfor %}
+            </tr>
+            <tbody>
+                {% for row in row_data %}
+                <tr>
+                    {% for col, row_ in zip(column_names, row) %}
+                    <td>{{row_}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+{% endblock content %}

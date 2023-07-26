@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block tog %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+{% endblock tog %}
+{% block content %}
+    <div style="margin-bottom: 30px;">
+        <div class="card" style="background-color: rgb(1, 15, 9); color: white;">
+            <div class="card-header">
+                <h3>{{ the_title }}</h3>
+            </div>
+        </div>
+    
+        
+        <div class="dropdown btn-group" style="margin-bottom: 70px; margin-top: 10px;">
+            <button class="btn btn-warning" onclick="goBack()" style="margin-right: 10px;"> <i  class="material-icons icon1">arrow_back</i>Go Back</button>
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i  class="material-icons icon1">download</i>Download 
+            </button>
+            <form action="POST">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="http://127.0.0.1:5000/downloads">Excel(.xlsx)</a>
+            </div>
+            </form>
+        </div>
+        <div class="scrollmenu border">
+            <div class="dataframe">
+                {% for table in tables %}
+                    {{ table|safe }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+{% endblock content %}

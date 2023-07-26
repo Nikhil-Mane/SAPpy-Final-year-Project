@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block tog %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+{% endblock tog %}
+{% block content %}
+<div>
+    <!-- dashboard url -->
+    <h1 class="iframe2" style="margin-left: 10%;">Dashboard of Year 2019-20</h1>
+    <center><iframe width="1250" height="600" class="iframe2" src="https://app.powerbi.com/reportEmbed?reportId=176eed83-de8e-4938-8ff7-255cff2e3801&autoAuth=true&ctid=8c78c122-f781-4500-9c2a-f645a76281f5&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWluZGlhLXdlc3QtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D" frameborder="0" allowFullScreen="true"></iframe></center>
+</div>
+
+
+{% endblock content %}
